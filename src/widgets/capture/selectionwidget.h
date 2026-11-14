@@ -25,7 +25,7 @@ public:
         CENTER = 0b10000,
     };
 
-    explicit SelectionWidget(const QColor& c, QWidget* parent = nullptr);
+    explicit SelectionWidget(QColor c, QWidget* parent = nullptr);
 
     SideType getMouseSide(const QPoint& mousePos) const;
     QVector<QRect> handlerAreas();
@@ -46,9 +46,9 @@ protected:
     void parentMouseReleaseEvent(QMouseEvent* e);
     void parentMouseMoveEvent(QMouseEvent* e);
 
-    void paintEvent(QPaintEvent*);
-    void resizeEvent(QResizeEvent*);
-    void moveEvent(QMoveEvent*);
+    void paintEvent(QPaintEvent*) override;
+    void resizeEvent(QResizeEvent*) override;
+    void moveEvent(QMoveEvent*) override;
 
     void showEvent(QShowEvent*) override;
     void hideEvent(QHideEvent*) override;
@@ -72,6 +72,11 @@ public slots:
     void resizeUp();
     void resizeDown();
 
+    void symResizeLeft();
+    void symResizeRight();
+    void symResizeUp();
+    void symResizeDown();
+
 private:
     void updateAreas();
     void updateCursor();
@@ -88,6 +93,7 @@ private:
     QCursor m_idleCentralCursor;
     bool m_ignoreMouse;
     bool m_mouseStartMove;
+    float m_aspectRatio;
 
     // naming convention for handles
     // T top, B bottom, R Right, L left

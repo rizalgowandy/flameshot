@@ -1,5 +1,4 @@
-#ifndef COLORGRABWIDGET_H
-#define COLORGRABWIDGET_H
+#pragma once
 
 #include <QWidget>
 
@@ -23,7 +22,7 @@ signals:
 
 private:
     bool eventFilter(QObject* obj, QEvent* event) override;
-    void paintEvent(QPaintEvent* e);
+    void paintEvent(QPaintEvent* e) override;
     void showEvent(QShowEvent* event) override;
 
     QPoint cursorPos() const;
@@ -41,5 +40,3 @@ private:
     bool m_extraZoomActive;
     bool m_magnifierActive;
 };
-
-#endif // COLORGRABWIDGET_H
